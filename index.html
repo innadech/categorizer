@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ListPhones</title>
+    <style>
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: monospace;
+        padding: 20px;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: normal;
+      }
+
+      .tree {
+        padding-left: 20px;
+        margin-left: 10px;
+      }
+
+      .category {
+        margin-bottom: 25px;
+      }
+
+      .category-header,
+      .item-row,
+      .add-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 8px 0;
+      }
+
+      .category-title {
+        font-size: 18px;
+      }
+
+      .item-list {
+        margin-left: 20px;
+      }
+
+      .item-row {
+        font-size: 16px;
+      }
+
+      input[type='text'] {
+        background: transparent;
+        border: 1px solid #ffffff;
+        color: #ffffff;
+        padding: 4px 8px;
+        font-family: monospace;
+        font-size: 14px;
+        outline: none;
+        width: 150px;
+      }
+
+      button {
+        background: transparent;
+        border: 1px solid #ffffff;
+        color: #ffffff;
+        padding: 4px 12px;
+        font-family: monospace;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .main-add {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Categories</h1>
+
+      <div class="tree">
+        <div class="category">
+          <div class="category-header">
+            <span class="category-title">Android</span>
+            <button id="elButtonEdit">edit</button>
+            <button id="elButtonDelete">delete</button>
+          </div>
+          <div class="item-list">
+            <div class="item-row">
+              <span>1Phone 15</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="item-row">
+              <span>Samsung Galaxy S25</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="item-row">
+              <span>Huawei H15</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="add-row">
+              <input type="text" />
+              <button>add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <div class="category-header">
+            <span class="category-title">Laptops</span>
+            <button>edit</button>
+            <button>delete</button>
+          </div>
+          <div class="item-list">
+            <div class="item-row">
+              <span>Lenovo</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="item-row">
+              <span>Macbook Air</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="add-row">
+              <input type="text" />
+              <button>add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <div class="category-header">
+            <span class="category-title">VacuumsCleaners</span>
+            <button>edit</button>
+            <button>delete</button>
+          </div>
+          <div class="item-list">
+            <div class="item-row">
+              <span>Dream</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="item-row">
+              <span>Ecovox T50</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="add-row">
+              <input type="text" />
+              <button>add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="category">
+          <div class="category-header">
+            <span class="category-title">Flowers</span>
+            <button>edit</button>
+            <button>delete</button>
+          </div>
+          <div class="item-list">
+            <div class="item-row">
+              <span>White Roses</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="item-row">
+              <span>Yellow Tulips</span>
+              <button>edit</button>
+              <button>delete</button>
+            </div>
+            <div class="add-row">
+              <input type="text" />
+              <button>add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-add">
+        <input type="text" />
+        <button>add</button>
+      </div>
+    </div>
+  </body>
+</html>
