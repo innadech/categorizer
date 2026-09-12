@@ -1,23 +1,23 @@
 let categories = [
-  {
-    id: 100,
-    name: 'Smartphones',
-    items: [
-      { id: 1, name: 'iPhone 15' },
-      { id: 2, name: 'Samsung Galaxy S25' },
-      { id: 3, name: 'Google Pixel 8' },
-    ],
-  },
-  {
-    id: 222,
-    name: 'Laptops',
-    items: [],
-  },
-  {
-    id: 333,
-    name: 'Flowers',
-    items: [],
-  },
+  // {
+  //   id: 100,
+  //   name: 'Smartphones',
+  //   items: [
+  //     { id: 1, name: 'iPhone 15' },
+  //     { id: 2, name: 'Samsung Galaxy S25' },
+  //     { id: 3, name: 'Google Pixel 8' },
+  //   ],
+  // },
+  // {
+  //   id: 222,
+  //   name: 'Laptops',
+  //   items: [],
+  // },
+  // {
+  //   id: 333,
+  //   name: 'Flowers',
+  //   items: [],
+  // },
 ]
 
 function getCategories() {
@@ -28,15 +28,19 @@ function getCategoryById(id) {
   return categories.find(category => category.id === id)
 }
 
-function addCategory(category) {
-  const newCategory = {
-    id: Math.random(), // Generate a random ID for the new category
-    name: category.name,
+function createCategory(categoryName) {
+  return {
+    id: Math.random(),
+    name: categoryName,
     items: [],
   }
-  categories.push(newCategory)
-  return newCategory
 }
+
+function addCategory(categoryName) {
+  const category = createCategory(categoryName)
+  categories.push(category)
+}
+
 function updateCategory(id, updatedCategory) {
   const category = categories.find(category => category.id === id)
   if (category) {
@@ -74,7 +78,7 @@ function updateItemInCategory(categoryId, itemId, updatedItem) {
   }
 }
 
-// console.log(addCategory({ name: 'Tablets' }))
+console.log(addCategory('Tablets'))
 // console.log(getCategories())
 // console.log(updateCategory(100, { name: 'Mobile Phones' }))
 // console.log(getCategories())

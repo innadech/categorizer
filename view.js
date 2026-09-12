@@ -3,29 +3,30 @@
 const elButtonAddItem = document.querySelector('#elButtonAddItem')
 const elInputItem = document.querySelector('#elInputItem')
 
-elButtonAddItem.onclick = onClickAddButtonAddCategory
+elButtonAddItem.onclick = onClickButtonAddCategory
 
-function onClickelButtonDeleteCategory(e) {
+function onClickButtonDeleteCategory(e) {
   // const category = e.target.previousElementSibling.textContent
   const category = e.target.parentElement.dataset.id
   handleDeleteCategory(+category)
 }
 
-function onClickAddButtonAddCategory(e) {
+function onClickButtonAddCategory(e) {
   let a = elInputItem.value
   console.log(a)
   handleAddCategory(a)
   elInputItem.value = ''
 }
 
-function onClickEditCategory(e) {
+function onClickButtonEditCategory(e) {
   const oldCategory = e.target.previousElementSibling.textContent
   console.log(oldCategory)
   const newCategory = prompt('Edit category:', oldCategory)
   const categoryId = e.target.parentElement.dataset.id
   handleCategoriesEdit(oldCategory, +categoryId, { name: newCategory })
 }
-function onClickelButtonDeleteItem(e) {
+
+function onClickButtonDeleteItem(e) {
   // const item = e.target.previousElementSibling.textContent
   // const category = e.target.parentElement.parentElement.firstChild.textContent
   const itemLi = e.target.closest('li')
@@ -70,8 +71,8 @@ function generateLiCategory(category) {
   elButtonDelete.textContent = 'delete'
   elButtonEdit.textContent = 'edit'
 
-  elButtonDelete.onclick = onClickelButtonDeleteCategory
-  elButtonEdit.onclick = onClickEditCategory
+  elButtonDelete.onclick = onClickButtonDeleteCategory
+  elButtonEdit.onclick = onClickButtonEditCategory
 
   category.items?.forEach(item => {
     const elLi = generatorLiItem(item)
@@ -95,7 +96,7 @@ function generatorLiItem(item) {
   elSpan.textContent = item.name
   elButtonDelete.textContent = 'delete'
   elButtonEdit.textContent = 'edit'
-  elButtonDelete.onclick = onClickelButtonDeleteItem
+  elButtonDelete.onclick = onClickButtonDeleteItem
   elButtonEdit.onclick = onClickEditItem
   elLi.appendChild(elSpan)
   elLi.appendChild(elButtonEdit)
