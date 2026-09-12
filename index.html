@@ -93,8 +93,8 @@
       <h1>Categories</h1>
 
       <div class="tree">
-        <div class="category">
-          <div class="category-header">
+        <div id="categoryList" class="category">
+          <!-- <div class="category-header">
             <span class="category-title">Android</span>
             <button id="elButtonEdit">edit</button>
             <button id="elButtonDelete">delete</button>
@@ -114,15 +114,15 @@
               <span>Huawei H15</span>
               <button>edit</button>
               <button>delete</button>
-            </div>
-            <div class="add-row">
-              <input type="text" />
-              <button>add</button>
-            </div>
+            </div> -->
+          <div class="add-row">
+            <input id="elInputItem" type="text" />
+            <button id="elButtonAddItem">add</button>
           </div>
         </div>
+      </div>
 
-        <div class="category">
+      <!-- <div class="category">
           <div class="category-header">
             <span class="category-title">Laptops</span>
             <button>edit</button>
@@ -144,9 +144,9 @@
               <button>add</button>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="category">
+      <!-- <div class="category">
           <div class="category-header">
             <span class="category-title">VacuumsCleaners</span>
             <button>edit</button>
@@ -168,9 +168,9 @@
               <button>add</button>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="category">
+      <!-- <div class="category">
           <div class="category-header">
             <span class="category-title">Flowers</span>
             <button>edit</button>
@@ -193,12 +193,15 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="main-add">
         <input type="text" />
         <button>add</button>
       </div>
     </div>
+    <script src="./model.js"></script>
+    <script src="./controller.js"></script>
+    <script src="./view.js"></script>
   </body>
 </html>

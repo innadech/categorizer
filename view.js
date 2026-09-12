@@ -1,27 +1,57 @@
 // const elButtonDelete = document.querySelector('#elButtonDelete')
 // const elInputCategory = document.querySelector('#elInputCategory')
-// const elButtonEdit = document.querySelector('#elButtonEdit')
+const elButtonAddItem = document.querySelector('#elButtonAddItem')
+const elInputItem = document.querySelector('#elInputItem')
+
+elButtonAddItem.onclick = onClickAddButtonAddCategory
 
 function onClickelButtonDeleteCategory(e) {
-  const category = e.target.previousElementSibling.textContent
-  handleDeleteCategory(category)
+  // const category = e.target.previousElementSibling.textContent
+  const category = e.target.parentElement.dataset.id
+  handleDeleteCategory(+category)
 }
 
-// function onClickAddButtonAddCategory (e){
-//   let a = elInputCategory.value
-//   handleAddCategory(a) // Вызываем контроллер добавления
-//   elInputCategory.value = ''
-// }
+function onClickAddButtonAddCategory(e) {
+  let a = elInputItem.value
+  console.log(a)
+  handleAddCategory(a)
+  elInputItem.value = ''
+}
 
-function onClickEditProduct(e) {
-  const oldCategory = e.target.textContent
+function onClickEditCategory(e) {
+  const oldCategory = e.target.previousElementSibling.textContent
+  console.log(oldCategory)
   const newCategory = prompt('Edit category:', oldCategory)
-  handleCategoriesEdit(oldCategory, newCategory)
+  const categoryId = e.target.parentElement.dataset.id
+  handleCategoriesEdit(oldCategory, +categoryId, { name: newCategory })
+}
+function onClickelButtonDeleteItem(e) {
+  // const item = e.target.previousElementSibling.textContent
+  // const category = e.target.parentElement.parentElement.firstChild.textContent
+  const itemLi = e.target.closest('li')
+  const itemId = itemLi.dataset.id
+  const categoryLi = itemLi.closest('ul').closest('li')
+  const categoryId = categoryLi.dataset.id
+  handleDeleteItem(+categoryId, +itemId)
+}
+function onClickEditItem(e) {
+  // const oldItem = e.target.previousElementSibling.textContent
+  // const category = e.target.parentElement.parentElement.firstChild.textContent
+  // const newItem = prompt('Edit item:', oldItem)
+  // handleUpdateItem(category, oldItem, newItem)
+  const itemLi = e.target.closest('li')
+  const itemId = itemLi.dataset.id
+  const categoryLi = itemLi.closest('ul').closest('li')
+  const categoryId = categoryLi.dataset.id
+  const oldItemName = itemLi.querySelector('span').textContent
+  const newItemName = prompt('Edit item:', oldItemName)
+  if (newItemName) {
+    handleUpdateItem(+categoryId, +itemId, { name: newItemName })
+  }
 }
 
 function renderCategoriesListAll(categories) {
   const elUl = document.querySelector('#categoryList')
-  elUl.innerHTML = ''
   categories.forEach(category => {
     const elLi = generateLiCategory(category)
     elUl.appendChild(elLi)
@@ -30,20 +60,53 @@ function renderCategoriesListAll(categories) {
 
 function generateLiCategory(category) {
   const elLi = document.createElement('li')
+  elLi.dataset.id = category.id
   const elSpan = document.createElement('span')
   const elButtonDelete = document.createElement('button')
   const elButtonEdit = document.createElement('button')
+  const elUlItems = document.createElement('ul')
 
-  elSpan.textContent = category
+  elSpan.textContent = category.name
   elButtonDelete.textContent = 'delete'
   elButtonEdit.textContent = 'edit'
 
   elButtonDelete.onclick = onClickelButtonDeleteCategory
-  elButtonEdit.onclick = onClickEditProduct
+  elButtonEdit.onclick = onClickEditCategory
+
+  category.items?.forEach(item => {
+    const elLi = generatorLiItem(item)
+    elUlItems.appendChild(elLi)
+  })
 
   elLi.appendChild(elSpan)
   elLi.appendChild(elButtonEdit)
   elLi.appendChild(elButtonDelete)
+  elLi.appendChild(elUlItems)
 
   return elLi
 }
+
+function generatorLiItem(item) {
+  const elLi = document.createElement('li')
+  elLi.dataset.id = item.id
+  const elSpan = document.createElement('span')
+  const elButtonDelete = document.createElement('button')
+  const elButtonEdit = document.createElement('button')
+  elSpan.textContent = item.name
+  elButtonDelete.textContent = 'delete'
+  elButtonEdit.textContent = 'edit'
+  elButtonDelete.onclick = onClickelButtonDeleteItem
+  elButtonEdit.onclick = onClickEditItem
+  elLi.appendChild(elSpan)
+  elLi.appendChild(elButtonEdit)
+  elLi.appendChild(elButtonDelete)
+  return elLi
+}
+// function renderItemsListAll(categories) {
+//   categories.forEach(category => {
+//     category.items.forEach(item => {
+//       const elLi = generatorLiItem(item)
+//       elUlItems.appendChild(elLi)
+//     })
+//   })
+// }
