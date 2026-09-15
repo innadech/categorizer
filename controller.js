@@ -22,10 +22,12 @@ function handleAddItem(categoryId, item) {
   addItemToCategory(categoryId, item)
   renderCategories()
 }
+
 function handleDeleteItem(categoryId, itemId) {
   deleteItemFromCategory(categoryId, itemId)
   renderCategories()
 }
+
 function handleUpdateItem(categoryId, itemId, updatedItem) {
   updateItemInCategory(categoryId, itemId, updatedItem)
   renderCategories()

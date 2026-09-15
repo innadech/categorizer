@@ -22,6 +22,7 @@ function onClickButtonEditCategory(e) {
   const oldCategory = e.target.previousElementSibling.textContent
   console.log(oldCategory)
   const newCategory = prompt('Edit category:', oldCategory)
+  if (newCategory === null) return
   const categoryId = e.target.parentElement.dataset.id
   handleCategoriesEdit(+categoryId, { name: newCategory })
 }
