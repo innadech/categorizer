@@ -85,6 +85,7 @@ function generateLiCategory(category) {
   elButtonEdit.onclick = onClickButtonEditCategory
   elButtonAddItem.onclick = onClickButtonAddItem
 
+  // эту функцию вытащить
   function onClickButtonAddItem(e) {
     let a = elInputItem.value
     handleAddItem(+e.target.parentElement.dataset.id, { name: a })
