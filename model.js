@@ -46,7 +46,7 @@ function updateCategory(id, updatedCategory) {
   if (category) {
     category.name = updatedCategory.name
   }
-  return category
+  // return category
 }
 
 function deleteCategory(id) {
@@ -78,7 +78,7 @@ function updateItemInCategory(categoryId, itemId, updatedItem) {
   }
 }
 
-console.log(addCategory('Tablets'))
+// console.log(addCategory('Tablets'))
 // console.log(getCategories())
 // console.log(updateCategory(100, { name: 'Mobile Phones' }))
 // console.log(getCategories())

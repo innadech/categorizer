@@ -23,7 +23,7 @@ function onClickButtonEditCategory(e) {
   console.log(oldCategory)
   const newCategory = prompt('Edit category:', oldCategory)
   const categoryId = e.target.parentElement.dataset.id
-  handleCategoriesEdit(oldCategory, +categoryId, { name: newCategory })
+  handleCategoriesEdit(+categoryId, { name: newCategory })
 }
 
 function onClickButtonDeleteItem(e) {
@@ -53,6 +53,7 @@ function onClickEditItem(e) {
 
 function renderCategoriesListAll(categories) {
   const elUl = document.querySelector('#categoryList')
+  elUl.innerHTML = ''
   categories.forEach(category => {
     const elLi = generateLiCategory(category)
     elUl.appendChild(elLi)
@@ -60,8 +61,13 @@ function renderCategoriesListAll(categories) {
 }
 
 function generateLiCategory(category) {
+  const elInputItem = document.createElement('input')
+  const elButtonAddItem = document.createElement('button')
+  const elDiv = document.createElement('div')
+  elDiv.appendChild(elInputItem)
+  elDiv.appendChild(elButtonAddItem)
   const elLi = document.createElement('li')
-  elLi.dataset.id = category.id
+
   const elSpan = document.createElement('span')
   const elButtonDelete = document.createElement('button')
   const elButtonEdit = document.createElement('button')
@@ -70,9 +76,19 @@ function generateLiCategory(category) {
   elSpan.textContent = category.name
   elButtonDelete.textContent = 'delete'
   elButtonEdit.textContent = 'edit'
+  elInputItem.type = 'text'
+  elLi.dataset.id = category.id
+  elButtonAddItem.textContent = 'Add Item'
 
   elButtonDelete.onclick = onClickButtonDeleteCategory
   elButtonEdit.onclick = onClickButtonEditCategory
+  elButtonAddItem.onclick = onClickButtonAddItem
+
+  function onClickButtonAddItem(e) {
+    let a = elInputItem.value
+    handleAddItem(+e.target.parentElement.dataset.id, { name: a })
+    elInputItem.value = ''
+  }
 
   category.items?.forEach(item => {
     const elLi = generatorLiItem(item)
@@ -83,6 +99,8 @@ function generateLiCategory(category) {
   elLi.appendChild(elButtonEdit)
   elLi.appendChild(elButtonDelete)
   elLi.appendChild(elUlItems)
+  elLi.appendChild(elInputItem)
+  elLi.appendChild(elButtonAddItem)
 
   return elLi
 }
@@ -93,6 +111,7 @@ function generatorLiItem(item) {
   const elSpan = document.createElement('span')
   const elButtonDelete = document.createElement('button')
   const elButtonEdit = document.createElement('button')
+
   elSpan.textContent = item.name
   elButtonDelete.textContent = 'delete'
   elButtonEdit.textContent = 'edit'
