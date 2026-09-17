@@ -28,8 +28,6 @@ function onClickButtonEditCategory(e) {
 }
 
 function onClickButtonDeleteItem(e) {
-  // const item = e.target.previousElementSibling.textContent
-  // const category = e.target.parentElement.parentElement.firstChild.textContent
   const itemLi = e.target.closest('li')
   const itemId = itemLi.dataset.id
   const categoryLi = itemLi.closest('ul').closest('li')
@@ -37,10 +35,6 @@ function onClickButtonDeleteItem(e) {
   handleDeleteItem(+categoryId, +itemId)
 }
 function onClickEditItem(e) {
-  // const oldItem = e.target.previousElementSibling.textContent
-  // const category = e.target.parentElement.parentElement.firstChild.textContent
-  // const newItem = prompt('Edit item:', oldItem)
-  // handleUpdateItem(category, oldItem, newItem)
   const itemLi = e.target.closest('li')
   const itemId = itemLi.dataset.id
   const categoryLi = itemLi.closest('ul').closest('li')
@@ -48,7 +42,7 @@ function onClickEditItem(e) {
   const oldItemName = itemLi.querySelector('span').textContent
   const newItemName = prompt('Edit item:', oldItemName)
   if (newItemName) {
-    handleUpdateItem(+categoryId, +itemId, { name: newItemName })
+    handleUpdateItem(+categoryId, +itemId, newItemName)
   }
 }
 
@@ -59,6 +53,14 @@ function renderCategoriesListAll(categories) {
     const elLi = generateLiCategory(category)
     elUl.appendChild(elLi)
   })
+}
+function onClickButtonAddItem(e) {
+  const categoryLi = e.target.closest('li')
+  const categoryId = categoryLi.dataset.id
+  const input = categoryLi.querySelector('input')
+  const itemName = input.value
+  handleAddItem(+categoryId, itemName)
+  input.value = ''
 }
 
 function generateLiCategory(category) {
@@ -84,13 +86,6 @@ function generateLiCategory(category) {
   elButtonDelete.onclick = onClickButtonDeleteCategory
   elButtonEdit.onclick = onClickButtonEditCategory
   elButtonAddItem.onclick = onClickButtonAddItem
-
-  // эту функцию вытащить
-  function onClickButtonAddItem(e) {
-    let a = elInputItem.value
-    handleAddItem(+e.target.parentElement.dataset.id, { name: a })
-    elInputItem.value = ''
-  }
 
   category.items?.forEach(item => {
     const elLi = generatorLiItem(item)

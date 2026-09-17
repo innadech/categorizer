@@ -37,14 +37,36 @@ function createCategory(categoryName) {
 }
 
 function addCategory(categoryName) {
-  const category = createCategory(categoryName)
+  const trimmedCategoryName = categoryName.trim()
+  if (trimmedCategoryName.length < 3) return
+  if (trimmedCategoryName === '') return
+  const isExists = categories.some(
+    cat => cat.name.trim().toLowerCase() === trimmedCategoryName.toLowerCase(),
+  )
+  if (isExists) return
+  const category = createCategory(trimmedCategoryName)
   categories.push(category)
 }
 
 function updateCategory(id, updatedCategory) {
   const category = categories.find(category => category.id === id)
+  const newName =
+    typeof updatedCategory === 'string' ? updatedCategory : updatedCategory.name
+  if (!newName) return
+  const trimmedName = newName.trim()
+
+  if (trimmedName.length < 3 || trimmedName === '') return
+
+  // Проверяем, нет ли уже ДРУГОЙ категории с таким же именем
+  const isDuplicate = categories.some(
+    cat =>
+      cat.id !== id &&
+      cat.name.trim().toLowerCase() === trimmedName.toLowerCase(),
+  )
+
+  if (isDuplicate) return
   if (category) {
-    category.name = updatedCategory.name
+    category.name = trimmedName
   }
   // return category
 }
@@ -53,13 +75,35 @@ function deleteCategory(id) {
   categories = categories.filter(category => category.id !== id)
 }
 
-function addItemToCategory(categoryId, item) {
-  const category = categories.find(category => category.id === categoryId)
-  if (category) {
-    item.id = Math.random()
-    category.items.push(item)
+function createItem(itemName) {
+  return {
+    id: Math.random(),
+    name: itemName,
   }
 }
+
+function addItemToCategory(categoryId, itemName) {
+  const trimmedItemName = itemName.trim()
+  if (trimmedItemName.length < 3) return
+  if (trimmedItemName === '') return
+  const category = categories.find(category => category.id === categoryId)
+  if (!category) return
+  const isDuplicate = category.items.some(
+    item => item.name.toLowerCase() === trimmedItemName.toLowerCase(),
+  )
+
+  if (isDuplicate) return
+  const item = createItem(trimmedItemName)
+  category.items.push(item)
+}
+
+// function addItemToCategory(categoryId, item) {
+//   const category = categories.find(category => category.id === categoryId)
+//   if (category) {
+//     item.id = Math.random()
+//     category.items.push(item)
+//   }
+// }
 
 function deleteItemFromCategory(categoryId, itemId) {
   const category = categories.find(category => category.id === categoryId)
@@ -70,10 +114,19 @@ function deleteItemFromCategory(categoryId, itemId) {
 
 function updateItemInCategory(categoryId, itemId, updatedItem) {
   const category = categories.find(category => category.id === categoryId)
+  // 3. Проверяем, существует ли уже категория с таким именем (сравниваем именно имена, а не объекты)
+  const newName =
+    typeof updatedItem === 'string' ? updatedItem : updatedItem.name
+  if (!newName) return
+  const isDuplicate = category.items.some(
+    i => i.id !== itemId && i.name.toLowerCase() === newName.toLowerCase(),
+  )
+
+  if (isDuplicate) return
   if (category) {
     const item = category.items.find(item => item.id === itemId)
     if (item) {
-      item.name = updatedItem.name
+      item.name = newName
     }
   }
 }
