@@ -119,6 +119,7 @@ function generatorLiItem(item) {
   elLi.appendChild(elButtonDelete)
   return elLi
 }
+
 // function renderItemsListAll(categories) {
 //   categories.forEach(category => {
 //     category.items.forEach(item => {
@@ -126,4 +127,39 @@ function generatorLiItem(item) {
 //       elUlItems.appendChild(elLi)
 //     })
 //   })
+// }
+
+// const ul = document.querySelector('#categoryList')
+// function generateLiCategory(category) {
+//   const elLi = document.createElement('li')
+//   const elH2 = document.createElement('h2')
+//   const elOl = document.createElement('ol')
+//   const elLiAdd = document.createElement('li')
+//   const elInput = document.createElement('input')
+//   const elButtonAdd = document.createElement('button')
+//   const elButtonDelete = document.createElement('button')
+//   elLi.dataset.id = category.id
+
+//   elButtonAdd.textContent = 'Add'
+//   elButtonDelete.textContent = 'Delete'
+
+//   elInput.type = 'text'
+//   elH2.textContent = category.name
+
+//   category.items?.forEach(item => {
+//     const elLi = generatorLiItem(item)
+//     elUlItems.appendChild(elLi)
+//   })
+
+//   elLi.appendChild(elH2)
+//   elLi.appendChild(elOl)
+//   elOl.appendChild(elLiAdd)
+//   elLiAdd.appendChild(elInput)
+//   elLiAdd.appendChild(elButtonAdd)
+//   elLi.appendChild(elButtonDelete)
+
+//   elButtonAdd.onclick = onClickButtonAddItem
+//   elButtonDelete.onclick = onClickButtonDeleteCategory
+
+//   return elLi
 // }
