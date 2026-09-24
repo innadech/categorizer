@@ -46,14 +46,14 @@ function onClickEditItem(e) {
   }
 }
 
-function renderCategoriesListAll(categories) {
-  const elUl = document.querySelector('#categoryList')
-  elUl.innerHTML = ''
-  categories.forEach(category => {
-    const elLi = generateLiCategory(category)
-    elUl.appendChild(elLi)
-  })
-}
+// function renderCategoriesListAll(categories) {
+//   const elUl = document.querySelector('#categoryList')
+//   elUl.innerHTML = ''
+//   categories.forEach(category => {
+//     const elLi = generateLiCategory(category)
+//     elUl.appendChild(elLi)
+//   })
+// }
 function onClickButtonAddItem(e) {
   const categoryLi = e.target.closest('li')
   const categoryId = categoryLi.dataset.id
@@ -63,103 +63,125 @@ function onClickButtonAddItem(e) {
   input.value = ''
 }
 
-function generateLiCategory(category) {
-  const elInputItem = document.createElement('input')
-  const elButtonAddItem = document.createElement('button')
-  const elDiv = document.createElement('div')
-  elDiv.appendChild(elInputItem)
-  elDiv.appendChild(elButtonAddItem)
-  const elLi = document.createElement('li')
-
-  const elSpan = document.createElement('span')
-  const elButtonDelete = document.createElement('button')
-  const elButtonEdit = document.createElement('button')
-  const elUlItems = document.createElement('ul')
-
-  elSpan.textContent = category.name
-  elButtonDelete.textContent = 'delete'
-  elButtonEdit.textContent = 'edit'
-  elInputItem.type = 'text'
-  elLi.dataset.id = category.id
-  elButtonAddItem.textContent = 'Add Item'
-
-  elButtonDelete.onclick = onClickButtonDeleteCategory
-  elButtonEdit.onclick = onClickButtonEditCategory
-  elButtonAddItem.onclick = onClickButtonAddItem
-
-  category.items?.forEach(item => {
-    const elLi = generatorLiItem(item)
-    elUlItems.appendChild(elLi)
-  })
-
-  elLi.appendChild(elSpan)
-  elLi.appendChild(elButtonEdit)
-  elLi.appendChild(elButtonDelete)
-  elLi.appendChild(elUlItems)
-  elLi.appendChild(elInputItem)
-  elLi.appendChild(elButtonAddItem)
-
-  return elLi
-}
-
-function generatorLiItem(item) {
-  const elLi = document.createElement('li')
-  elLi.dataset.id = item.id
-  const elSpan = document.createElement('span')
-  const elButtonDelete = document.createElement('button')
-  const elButtonEdit = document.createElement('button')
-
-  elSpan.textContent = item.name
-  elButtonDelete.textContent = 'delete'
-  elButtonEdit.textContent = 'edit'
-  elButtonDelete.onclick = onClickButtonDeleteItem
-  elButtonEdit.onclick = onClickEditItem
-  elLi.appendChild(elSpan)
-  elLi.appendChild(elButtonEdit)
-  elLi.appendChild(elButtonDelete)
-  return elLi
-}
-
-// function renderItemsListAll(categories) {
-//   categories.forEach(category => {
-//     category.items.forEach(item => {
-//       const elLi = generatorLiItem(item)
-//       elUlItems.appendChild(elLi)
-//     })
-//   })
-// }
-
-// const ul = document.querySelector('#categoryList')
 // function generateLiCategory(category) {
+//   const elInputItem = document.createElement('input')
+//   const elButtonAddItem = document.createElement('button')
+//   const elDiv = document.createElement('div')
+//   elDiv.appendChild(elInputItem)
+//   elDiv.appendChild(elButtonAddItem)
 //   const elLi = document.createElement('li')
-//   const elH2 = document.createElement('h2')
-//   const elOl = document.createElement('ol')
-//   const elLiAdd = document.createElement('li')
-//   const elInput = document.createElement('input')
-//   const elButtonAdd = document.createElement('button')
+
+//   const elSpan = document.createElement('span')
 //   const elButtonDelete = document.createElement('button')
+//   const elButtonEdit = document.createElement('button')
+//   const elUlItems = document.createElement('ul')
+
+//   elSpan.textContent = category.name
+//   elButtonDelete.textContent = 'delete'
+//   elButtonEdit.textContent = 'edit'
+//   elInputItem.type = 'text'
 //   elLi.dataset.id = category.id
+//   elButtonAddItem.textContent = 'Add Item'
 
-//   elButtonAdd.textContent = 'Add'
-//   elButtonDelete.textContent = 'Delete'
-
-//   elInput.type = 'text'
-//   elH2.textContent = category.name
+//   elButtonDelete.onclick = onClickButtonDeleteCategory
+//   elButtonEdit.onclick = onClickButtonEditCategory
+//   elButtonAddItem.onclick = onClickButtonAddItem
 
 //   category.items?.forEach(item => {
 //     const elLi = generatorLiItem(item)
 //     elUlItems.appendChild(elLi)
 //   })
 
-//   elLi.appendChild(elH2)
-//   elLi.appendChild(elOl)
-//   elOl.appendChild(elLiAdd)
-//   elLiAdd.appendChild(elInput)
-//   elLiAdd.appendChild(elButtonAdd)
+//   elLi.appendChild(elSpan)
+//   elLi.appendChild(elButtonEdit)
 //   elLi.appendChild(elButtonDelete)
-
-//   elButtonAdd.onclick = onClickButtonAddItem
-//   elButtonDelete.onclick = onClickButtonDeleteCategory
+//   elLi.appendChild(elUlItems)
+//   elLi.appendChild(elInputItem)
+//   elLi.appendChild(elButtonAddItem)
 
 //   return elLi
 // }
+
+// function generatorLiItem(item) {
+//   const elLi = document.createElement('li')
+//   elLi.dataset.id = item.id
+//   const elSpan = document.createElement('span')
+//   const elButtonDelete = document.createElement('button')
+//   const elButtonEdit = document.createElement('button')
+
+//   elSpan.textContent = item.name
+//   elButtonDelete.textContent = 'delete'
+//   elButtonEdit.textContent = 'edit'
+//   elButtonDelete.onclick = onClickButtonDeleteItem
+//   elButtonEdit.onclick = onClickEditItem
+//   elLi.appendChild(elSpan)
+//   elLi.appendChild(elButtonEdit)
+//   elLi.appendChild(elButtonDelete)
+//   return elLi
+// }
+
+function generateLiAddItem(item) {
+  const elLi = document.createElement('li')
+  const elH3 = document.createElement('h3')
+  const elButtonEdit = document.createElement('button')
+  const elButtonDelete = document.createElement('button')
+
+  elH3.textContent = item.name
+  elButtonEdit.textContent = ' Edit'
+  elButtonDelete.textContent = ' Delete'
+
+  elButtonEdit.onclick = onClickEditItem
+  elButtonDelete.onclick = onClickButtonDeleteItem
+
+  elLi.appendChild(elH3)
+  elLi.appendChild(elButtonEdit)
+  elLi.appendChild(elButtonDelete)
+  return elLi
+}
+
+function renderCategoriesListAll(categories) {
+  const ul = document.querySelector('#categoryList')
+  ul.innerHTML = ''
+  categories.forEach(category => {
+    const elLi = generateLiCategory(category)
+    ul.appendChild(elLi)
+  })
+}
+
+function generateLiCategory(category) {
+  const elLi = document.createElement('li')
+  const elH2 = document.createElement('h2')
+  const elButttonEdit = document.createElement('button')
+  const elButtonDelete = document.createElement('button')
+  const elOl = document.createElement('ol')
+  const elLiAdd = document.createElement('li')
+  const elInput = document.createElement('input')
+  const elButtonAdd = document.createElement('button')
+
+  elLi.dataset.id = category.id
+
+  elButtonAdd.textContent = 'Add'
+  elButtonDelete.textContent = 'Delete'
+
+  elInput.type = 'text'
+  elH2.textContent = category.name
+
+  category.items?.forEach(item => {
+    const elLi = generatorLiItem(item)
+    elOl.appendChild(elLi)
+  })
+
+  elLi.appendChild(elH2)
+  elLi.appendChild(elOl)
+  elLi.appendChild(elButttonEdit)
+  elLi.appendChild(elButtonDelete)
+  elOl.appendChild(elLiAdd)
+  elLiAdd.appendChild(elInput)
+  elLiAdd.appendChild(elButtonAdd)
+
+  elButtonAdd.onclick = onClickButtonAddItem
+  elButtonDelete.onclick = onClickButtonDeleteCategory
+  elButttonEdit.onclick = onClickButtonEditCategory
+
+  return elLi
+}

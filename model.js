@@ -40,11 +40,14 @@ function addCategory(categoryName) {
   const trimmedCategoryName = categoryName.trim()
   if (trimmedCategoryName.length < 3) return
   if (trimmedCategoryName === '') return
+  const formattedCategoryName =
+    trimmedCategoryName[0].toUpperCase() + trimmedCategoryName.slice(1)
   const isExists = categories.some(
-    cat => cat.name.trim().toLowerCase() === trimmedCategoryName.toLowerCase(),
+    cat =>
+      cat.name.trim().toLowerCase() === formattedCategoryName.toLowerCase(),
   )
   if (isExists) return
-  const category = createCategory(trimmedCategoryName)
+  const category = createCategory(formattedCategoryName)
   categories.push(category)
 }
 
@@ -83,9 +86,10 @@ function createItem(itemName) {
 }
 
 function addItemToCategory(categoryId, itemName) {
-  const trimmedItemName = itemName.trim()
+  const trimmedItemName = itemName.trim().toLowerCase()
   if (trimmedItemName.length < 3) return
   if (trimmedItemName === '') return
+
   const category = categories.find(category => category.id === categoryId)
   if (!category) return
   const isDuplicate = category.items.some(
