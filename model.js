@@ -8,16 +8,6 @@ let categories = [
   //     { id: 3, name: 'Google Pixel 8' },
   //   ],
   // },
-  // {
-  //   id: 222,
-  //   name: 'Laptops',
-  //   items: [],
-  // },
-  // {
-  //   id: 333,
-  //   name: 'Flowers',
-  //   items: [],
-  // },
 ]
 
 function getCategories() {
@@ -42,6 +32,9 @@ function addCategory(categoryName) {
   if (trimmedCategoryName === '') return
   const formattedCategoryName =
     trimmedCategoryName[0].toUpperCase() + trimmedCategoryName.slice(1)
+
+  // const formattedCategoryName = toCapitalCase(trimmedCategoryName)
+
   const isExists = categories.some(
     cat =>
       cat.name.trim().toLowerCase() === formattedCategoryName.toLowerCase(),
@@ -116,6 +109,7 @@ function deleteItemFromCategory(categoryId, itemId) {
   }
 }
 
+// updateNameByItemIdInCategoryId(categoryId, itemId, updatedItemName)
 function updateItemInCategory(categoryId, itemId, updatedItem) {
   const category = categories.find(category => category.id === categoryId)
   // 3. Проверяем, существует ли уже категория с таким именем (сравниваем именно имена, а не объекты)
@@ -135,11 +129,44 @@ function updateItemInCategory(categoryId, itemId, updatedItem) {
   }
 }
 
-// console.log(addCategory('Tablets'))
+function toCapitalCase(s) {
+  const lower = s.toLowerCase()
+  const char = lower[0].toUpperCase()
+  return char + lower.slice(1)
+}
+
+const trimmedCategoryName = 'tTTTTTTTTttttt'
+
+const formattedCategoryName =
+  trimmedCategoryName[0].toUpperCase() +
+  trimmedCategoryName.toLowerCase().slice(1)
+
+console.log(formattedCategoryName)
+
+console.log(toCapitalCase(trimmedCategoryName))
+
+console.log(getCategories())
+console.log('')
+addCategory('Tablets')
+console.log(getCategories())
+console.log('')
+addCategory('Tablets')
+console.log(getCategories())
+console.log('')
+addCategory('Smartphones')
+console.log(getCategories())
+console.log('')
+updateCategory(getCategories()[0].id, { name: 'Smartphones' })
+console.log(getCategories())
+console.log('')
+deleteCategory(getCategories()[0].id)
+console.log(getCategories())
+console.log('')
+
+//
+
 // console.log(getCategories())
-// console.log(updateCategory(100, { name: 'Mobile Phones' }))
 // console.log(getCategories())
-// console.log(deleteCategory(222))
 // console.log(getCategories())
 // console.log(addItemToCategory(100, { name: 'iPhone 18' }))
 // console.log(getCategories())
