@@ -27,18 +27,10 @@ function createCategory(categoryName) {
 }
 
 function addCategory(categoryName) {
-  const trimmedCategoryName = categoryName.trim()
-  if (trimmedCategoryName.length < 3) return
-  if (trimmedCategoryName === '') return
-  const formattedCategoryName =
-    trimmedCategoryName[0].toUpperCase() + trimmedCategoryName.slice(1)
-
-  // const formattedCategoryName = toCapitalCase(trimmedCategoryName)
-
-  const isExists = categories.some(
-    cat =>
-      cat.name.trim().toLowerCase() === formattedCategoryName.toLowerCase(),
-  )
+  const trimmedString = categoryName.trim()
+  if (!isValidString(trimmedString)) return
+  const formattedCategoryName = toCapitalCase(trimmedString)
+  const isExists = categories.some(c => c.name === formattedCategoryName)
   if (isExists) return
   const category = createCategory(formattedCategoryName)
   categories.push(category)
@@ -135,15 +127,11 @@ function toCapitalCase(s) {
   return char + lower.slice(1)
 }
 
-const trimmedCategoryName = 'tTTTTTTTTttttt'
-
-const formattedCategoryName =
-  trimmedCategoryName[0].toUpperCase() +
-  trimmedCategoryName.toLowerCase().slice(1)
-
-console.log(formattedCategoryName)
-
-console.log(toCapitalCase(trimmedCategoryName))
+function isValidString(s) {
+  if (s.length < 3) return false
+  if (s === '') return false
+  return true
+}
 
 console.log(getCategories())
 console.log('')
