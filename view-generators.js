@@ -1,8 +1,17 @@
-function generateLiAddItem(item) {
+function onClickButtonAddItem(e) {
+  const categoryLi = e.target.closest('li')
+  const categoryId = categoryLi.dataset.id
+  const input = categoryLi.querySelector('input')
+  const itemName = input.value
+  handleAddItem(+categoryId, itemName)
+  input.value = ''
+}
+function generatorLiItem(item) {
   const elLi = document.createElement('li')
   const elH3 = document.createElement('h3')
   const elButtonEdit = document.createElement('button')
   const elButtonDelete = document.createElement('button')
+  elLi.dataset.id = item.id
 
   elH3.textContent = item.name
   elButtonEdit.textContent = 'Edit'
@@ -25,11 +34,12 @@ function generateLiCategory(category) {
   const elOl = document.createElement('ol')
   const elLiAdd = document.createElement('li')
   const elInput = document.createElement('input')
-  const elButtonAdd = document.createElement('button')
+  const elButtonAddItem = document.createElement('button')
 
   elLi.dataset.id = category.id
 
-  elButtonAdd.textContent = 'Add'
+  elButtonEdit.textContent = 'Edit'
+  elButtonAddItem.textContent = 'Add Item'
   elButtonDelete.textContent = 'Delete'
 
   elInput.type = 'text'
@@ -46,9 +56,9 @@ function generateLiCategory(category) {
   elLi.appendChild(elButtonDelete)
   elOl.appendChild(elLiAdd)
   elLiAdd.appendChild(elInput)
-  elLiAdd.appendChild(elButtonAdd)
+  elLiAdd.appendChild(elButtonAddItem)
 
-  elButtonAdd.onclick = onClickButtonAddItem
+  elButtonAddItem.onclick = onClickButtonAddItem
   elButtonDelete.onclick = onClickButtonDeleteCategory
   elButtonEdit.onclick = onClickButtonEditCategory
 

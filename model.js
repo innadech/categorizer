@@ -1,13 +1,13 @@
 let categories = [
-  // {
-  //   id: 100,
-  //   name: 'Smartphones',
-  //   items: [
-  //     { id: 1, name: 'iPhone 15' },
-  //     { id: 2, name: 'Samsung Galaxy S25' },
-  //     { id: 3, name: 'Google Pixel 8' },
-  //   ],
-  // },
+  {
+    id: 100,
+    name: 'Smartphones',
+    items: [
+      { id: 1, name: 'iPhone 15' },
+      { id: 2, name: 'Samsung Galaxy S25' },
+      { id: 3, name: 'Google Pixel 8' },
+    ],
+  },
 ]
 
 function getCategories() {
@@ -71,7 +71,9 @@ function createItem(itemName) {
 }
 
 function addItemToCategory(categoryId, itemName) {
-  const trimmedItemName = itemName.trim().toLowerCase()
+  const trimmedItemName = String(itemName || '')
+    .trim()
+    .toLowerCase()
   if (trimmedItemName.length < 3) return
   if (trimmedItemName === '') return
 
@@ -85,6 +87,22 @@ function addItemToCategory(categoryId, itemName) {
   const item = createItem(trimmedItemName)
   category.items.push(item)
 }
+
+// function addItemToCategory(categoryId, itemName) {
+//   const trimmedItemName = itemName.trim().toLowerCase()
+//   if (trimmedItemName.length < 3) return
+//   if (trimmedItemName === '') return
+
+//   const category = categories.find(category => category.id === categoryId)
+//   if (!category) return
+//   const isDuplicate = category.items.some(
+//     item => item.name.toLowerCase() === trimmedItemName.toLowerCase(),
+//   )
+
+//   if (isDuplicate) return
+//   const item = createItem(trimmedItemName)
+//   category.items.push(item)
+// }
 
 // function addItemToCategory(categoryId, item) {
 //   const category = categories.find(category => category.id === categoryId)
@@ -133,23 +151,25 @@ function isValidString(s) {
   return true
 }
 
+// console.log(getCategories())
+// console.log('')
+// addCategory('Tablets')
+// console.log(getCategories())
+// console.log('')
+// addCategory('Tablets')
+// console.log(getCategories())
+// console.log('')
+// addCategory('Smartphones')
+// console.log(getCategories())
+// console.log('')
+// updateCategory(getCategories()[0].id, { name: 'Smartphones' })
+// console.log(getCategories())
+// console.log('')
+// deleteCategory(getCategories()[0].id)
+// console.log(getCategories())
+// console.log('')
+console.log(addItemToCategory(100, { name: 'iPhone 18' }))
 console.log(getCategories())
-console.log('')
-addCategory('Tablets')
-console.log(getCategories())
-console.log('')
-addCategory('Tablets')
-console.log(getCategories())
-console.log('')
-addCategory('Smartphones')
-console.log(getCategories())
-console.log('')
-updateCategory(getCategories()[0].id, { name: 'Smartphones' })
-console.log(getCategories())
-console.log('')
-deleteCategory(getCategories()[0].id)
-console.log(getCategories())
-console.log('')
 
 //
 
