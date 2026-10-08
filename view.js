@@ -1,4 +1,4 @@
 const elButtonAddCategory = document.querySelector('#elButtonAddCategory')
-const elInputCategory = document.querySelector('#elInputCategory')
+const elInputAddCategory = document.querySelector('#elInputAddCategory')
 
 elButtonAddCategory.onclick = onClickButtonAddCategory

@@ -1,5 +1,5 @@
 // const elButtonDelete = document.querySelector('#elButtonDelete')
-// const elInputCategory = document.querySelector('#elInputCategory')
+// const elInputAddCategory = document.querySelector('#elInputAddCategory')
 
 // const category = e.target.previousElementSibling.textContent
 

@@ -1,49 +1,51 @@
-function renderCategories() {
-  let categories = getCategories()
-  renderCategoriesListAll(categories)
-}
-
 function handleAddCategory(categoryName) {
-  addCategory(categoryName)
-  renderCategories()
-  console.log(getCategories())
-  saveCategories(getCategories())
+  if (addCategory(categoryName)) {
+    // renderInputCategoryClean()
+  }
+  const categories = getCategories()
+  renderCategoriesListAll(categories)
+  saveCategories(categories)
 }
 
 function handleDeleteCategory(categoryId) {
   deleteCategory(categoryId)
-  renderCategories()
-  saveCategories(getCategories())
+  const categories = getCategories()
+  renderCategoriesListAll(categories)
+  saveCategories(categories)
 }
 
 function handleCategoriesEdit(categoryId, newCategoryName) {
   updateCategory(categoryId, newCategoryName)
-  renderCategories()
-  saveCategories(getCategories())
+  const categories = getCategories()
+  renderCategoriesListAll(categories)
+  saveCategories(categories)
 }
 
 function handleAddItem(categoryId, item) {
   addItemToCategory(categoryId, item)
-  renderCategories()
-  saveCategories(getCategories())
+  const categories = getCategories()
+  renderCategoriesListAll(categories)
+  saveCategories(categories)
 }
 
 function handleDeleteItem(categoryId, itemId) {
   deleteItemFromCategory(categoryId, itemId)
-  renderCategories()
-  saveCategories(getCategories())
+  const categories = getCategories()
+  renderCategoriesListAll(categories)
+  saveCategories(categories)
 }
 
 function handleUpdateItem(categoryId, itemId, updatedItem) {
   updateItemInCategory(categoryId, itemId, updatedItem)
-  renderCategories()
-  saveCategories(getCategories())
+  const categories = getCategories()
+  renderCategoriesListAll(categories)
+  saveCategories(categories)
 }
 
 function handleLoadPage() {
   const savedCategories = restoreCategories()
   setCategories(savedCategories)
-  let categories = getCategories()
+  const categories = getCategories()
   renderCategoriesListAll(categories)
 }
 

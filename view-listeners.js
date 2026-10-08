@@ -4,10 +4,10 @@ function onClickButtonDeleteCategory(e) {
 }
 
 function onClickButtonAddCategory(e) {
-  let categoryName = elInputCategory.value
+  let categoryName = elInputAddCategory.value
   console.log(categoryName)
   handleAddCategory(categoryName)
-  elInputCategory.value = ''
+  elInputAddCategory.value = ''
 }
 
 function onClickButtonDeleteItem(e) {
