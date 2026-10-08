@@ -1,13 +1,13 @@
 function onClickButtonDeleteCategory(e) {
-  const category = e.target.parentElement.dataset.id
-  handleDeleteCategory(+category)
+  const categoryId = e.target.parentElement.dataset.id
+  handleDeleteCategory(+categoryId)
 }
 
 function onClickButtonAddCategory(e) {
-  let a = elInputItem.value
-  console.log(a)
-  handleAddCategory(a)
-  elInputItem.value = ''
+  let categoryName = elInputCategory.value
+  console.log(categoryName)
+  handleAddCategory(categoryName)
+  elInputCategory.value = ''
 }
 
 function onClickButtonDeleteItem(e) {

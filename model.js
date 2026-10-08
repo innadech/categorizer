@@ -1,14 +1,18 @@
 let categories = [
-  {
-    id: 100,
-    name: 'Smartphones',
-    items: [
-      { id: 1, name: 'iPhone 15' },
-      { id: 2, name: 'Samsung Galaxy S25' },
-      { id: 3, name: 'Google Pixel 8' },
-    ],
-  },
+  // {
+  //   id: 100,
+  //   name: 'Smartphones',
+  //   items: [
+  //     { id: 1, name: 'iPhone 15' },
+  //     { id: 2, name: 'Samsung Galaxy S25' },
+  //     { id: 3, name: 'Google Pixel 8' },
+  //   ],
+  // },
 ]
+
+function setCategories(newCategories) {
+  categories = newCategories || []
+}
 
 function getCategories() {
   return categories
@@ -36,20 +40,17 @@ function addCategory(categoryName) {
   categories.push(category)
 }
 
-function updateCategory(id, updatedCategory) {
-  const category = categories.find(category => category.id === id)
+function updateCategory(categoryId, newCategoryName) {
+  const category = categories.find(category => category.id === categoryId)
   const newName =
-    typeof updatedCategory === 'string' ? updatedCategory : updatedCategory.name
+    typeof newCategoryName === 'string' ? newCategoryName : newCategoryName.name
   if (!newName) return
   const trimmedName = newName.trim()
-
   if (trimmedName.length < 3 || trimmedName === '') return
-
-  // Проверяем, нет ли уже ДРУГОЙ категории с таким же именем
   const isDuplicate = categories.some(
     cat =>
-      cat.id !== id &&
-      cat.name.trim().toLowerCase() === trimmedName.toLowerCase(),
+      category.id !== categoryId &&
+      category.name.trim().toLowerCase() === trimmedName.toLowerCase(),
   )
 
   if (isDuplicate) return
@@ -58,6 +59,29 @@ function updateCategory(id, updatedCategory) {
   }
   // return category
 }
+
+// function updateCategory(id, updatedCategory) {
+//   const category = categories.find(category => category.id === id)
+//   const newName =
+//     typeof updatedCategory === 'string' ? updatedCategory : updatedCategory.name
+//   if (!newName) return
+//   const trimmedName = newName.trim()
+
+//   if (trimmedName.length < 3 || trimmedName === '') return
+
+//   // Проверяем, нет ли уже ДРУГОЙ категории с таким же именем
+//   const isDuplicate = categories.some(
+//     cat =>
+//       cat.id !== id &&
+//       cat.name.trim().toLowerCase() === trimmedName.toLowerCase(),
+//   )
+
+//   if (isDuplicate) return
+//   if (category) {
+//     category.name = trimmedName
+//   }
+//   // return category
+// }
 
 function deleteCategory(id) {
   categories = categories.filter(category => category.id !== id)
@@ -168,8 +192,8 @@ function isValidString(s) {
 // deleteCategory(getCategories()[0].id)
 // console.log(getCategories())
 // console.log('')
-console.log(addItemToCategory(100, { name: 'iPhone 18' }))
-console.log(getCategories())
+// console.log(addItemToCategory(100, { name: 'iPhone 18' }))
+// console.log(getCategories())
 
 //
 
